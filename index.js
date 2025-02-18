@@ -26,7 +26,7 @@ app.post('/process-image', upload.single('image'), async (req, res) => {
         // Create canvas from uploaded image
         const image = await loadImage(req.file.buffer);
         const canvas = new Canvas(image.width, image.height);
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
         
         // Draw image
         ctx.drawImage(image, 0, 0);
